@@ -1,0 +1,556 @@
+:root {
+    --color-bg-dark: #0c0c2e;
+    --color-bg-mid: #1a1a4a;
+    --color-bg-light: #2d2d6b;
+    /* Earth Colors */
+    --color-earth-blue-dark: #2e5f8a;
+    --color-earth-blue-mid: #357abd;
+    --color-earth-blue-light: #4a90e2;
+    --color-continent-green-dark: #228B22;
+    --color-continent-green-mid: #32CD32;
+    --color-continent-green-light: #90EE90;
+    /* Mars Colors */
+    --color-mars-red-dark: #8c422c;
+    --color-mars-red-mid: #c25f48;
+    --color-mars-red-light: #e57e65;
+    /* Jupiter Colors (NEW) */
+    --color-jupiter-orange-dark: #cc6600; 
+    --color-jupiter-orange-mid: #ff8800;
+    --color-jupiter-orange-light: #ffaa33;
+    /* Pluto Colors */
+    --color-pluto-red-dark: #5c3b5c; 
+    --color-pluto-red-mid: #7e5c7e;
+    --color-pluto-red-light: #b08bb0;
+    /* Neptune Colors (NEW) */
+    --color-neptune-blue-dark: #005577;
+    --color-neptune-blue-mid: #0077aa;
+    --color-neptune-blue-light: #33aaff;
+
+    --color-accent-red: #e74c3c;
+    --color-accent-red-dark: #c0392b;
+    --color-text-dark: #2c3e50;
+    --color-text-light: #7f8c8d;
+    --planet-size: 500px; 
+}
+
+html {
+    scroll-behavior: smooth; /* Untuk navigasi panah */
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-mid) 50%, var(--color-bg-light) 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto; 
+    display: block; 
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 500vh; /* Ruang scroll yang cukup untuk 5 planet */
+    padding-top: 50px; 
+    display: block;
+}
+
+/* Penataan Judul Global (TIDAK FIXED) */
+/* Penataan Judul Global (TIDAK FIXED) */
+.header-text {
+    position: relative; 
+    transform: none;
+    left: unset;
+    top: unset;
+    width: 100%;
+    box-shadow: none;
+    background-color: transparent;
+    padding-top: 50px;
+    /* DITAMBAHKAN UNTUK CENTER */
+    /* margin-left: auto; */ /* HAPUS */
+    /* margin-right: auto; */ /* HAPUS */
+    text-align: center; /* PERBAIKAN: Pastikan ini ada */
+    /* DITAMBAHKAN UNTUK MOBILE */
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.title {
+    color: white;
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 0 0 5px 0; 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.instruction {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+    margin: 0;
+}
+
+/* --- Planet Container Styling --- */
+.planet {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* DITAMBAHKAN: Batasi lebar maksimal */
+    margin-left: auto; /* DITAMBAHKAN: Auto margin untuk center */
+    margin-right: auto; /* DITAMBAHKAN: Auto margin untuk center */
+    height: 100vh; 
+    display: flex;
+    flex-direction: row; /* Flex row untuk info-sphere-nav */
+    justify-content: center; /* Posisikan semua elemen di tengah */
+    align-items: center;
+    gap: 50px; /* Jarak antara elemen planet */
+    margin-bottom: 200px; 
+    padding: 0 5%;
+}
+
+/* --- Planet Info (Kiri) --- */
+.planet-info {
+    width: 200px;
+    text-align: right;
+    color: white;
+    z-index: 5;
+}
+
+.info-title {
+    font-size: 2em;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.info-subtitle {
+    font-size: 1.2em;
+    color: var(--color-accent-red);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.info-explanation {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* --- Planet Sphere (Tengah) --- */
+.planet-sphere {
+    position: relative;
+    width: var(--planet-size);
+    height: var(--planet-size);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 50px rgba(255, 255, 255, 0.1),
+        inset -20px -20px 50px rgba(0, 0, 0, 0.3);
+    /* Rotasi DIPERLAMBAT 4X */
+    animation: rotate 80s linear infinite; 
+    cursor: pointer;
+    flex-shrink: 0; /* Jangan biarkan mengecil */
+}
+
+/* Warna Planet (Sama) */
+.earth {
+    background: linear-gradient(45deg, var(--color-earth-blue-light) 0%, var(--color-earth-blue-mid) 50%, var(--color-earth-blue-dark) 100%);
+}
+.mars {
+    background: linear-gradient(45deg, var(--color-mars-red-light) 0%, var(--color-mars-red-mid) 50%, var(--color-mars-red-dark) 100%);
+}
+.jupiter { 
+    background: linear-gradient(45deg, var(--color-jupiter-orange-light) 0%, var(--color-jupiter-orange-mid) 50%, var(--color-jupiter-orange-dark) 100%);
+}
+.pluto {
+    background: linear-gradient(45deg, var(--color-pluto-red-light) 0%, var(--color-pluto-red-mid) 50%, var(--color-pluto-red-dark) 100%);
+}
+.neptune { 
+    background: linear-gradient(45deg, var(--color-neptune-blue-light) 0%, var(--color-neptune-blue-mid) 50%, var(--color-neptune-blue-dark) 100%);
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.continent {
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 2;
+    /* Rotasi DIPERLAMBAT 4X */
+    animation: counterRotate 80s linear infinite; 
+}
+
+@keyframes counterRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+.continent::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--color-continent-green-dark) 0%, var(--color-continent-green-mid) 50%, var(--color-continent-green-light) 100%);
+    transition: all 0.3s ease;
+}
+
+/* --- Planet Navigasi (Kanan) --- */
+.planet-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    text-align: center;
+    color: white;
+    z-index: 5;
+    user-select: none;
+}
+
+.nav-info {
+    margin: 10px 0;
+    line-height: 1.4;
+    font-size: 0.9em;
+}
+
+.nav-up-text, .nav-down-text {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+.nav-planet-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-jupiter-orange-light);
+    margin: 5px 0;
+}
+.nav-desc-text {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.nav-arrow {
+    display: block;
+    font-size: 3em;
+    color: white;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.nav-arrow:hover {
+    color: var(--color-accent-red);
+    transform: scale(1.1);
+}
+
+/* Mengatur panah pertama/terakhir menjadi teks biasa jika tidak ada target */
+.planet-nav > p.nav-arrow {
+    color: rgba(255, 255, 255, 0.2);
+    cursor: default;
+    transform: none;
+}
+.planet-nav > p.nav-arrow:hover {
+    color: rgba(255, 255, 255, 0.2);
+    transform: none;
+}
+
+
+/* --- Continent Positioning (SAMA) --- */
+/* EARTH */
+.earth .home { top: 50px; left: 50px; width: 100px; height: 80px; }
+.earth .calculator { top: 150px; left: 350px; width: 120px; height: 100px; }
+.earth .results-earth { top: 350px; left: 40px; width: 100px; height: 90px; }
+/* MARS */
+.mars .maintenance-tdee { top: 150px; left: 100px; width: 150px; height: 120px; }
+.mars .results-mars { top: 300px; left: 300px; width: 100px; height: 90px; }
+/* JUPITER */
+.jupiter .lean-bulk-calc { top: 50px; left: 300px; width: 100px; height: 90px;}
+.jupiter .results-jupiter { top: 200px; left: 50px; width: 120px; height: 100px; }
+/* PLUTO */
+.pluto .cutting-calc { top: 200px; left: 350px; width: 130px; height: 110px; }
+.pluto .results-pluto { top: 50px; left: 80px; width: 100px; height: 80px; }
+/* NEPTUNE */
+.neptune .pluto-data { top: 100px; left: 50px; width: 150px; height: 120px; }
+.neptune .food-options { top: 300px; left: 350px; width: 100px; height: 90px; }
+
+
+/* Content Panel Styling (SAMA) */
+.content-panel {
+    position: absolute;
+    top: 50%;
+    right: -20px; 
+    transform: translateY(-50%);
+    width: 280px; 
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: var(--color-text-dark);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, right 0.3s ease, left 0.3s ease;
+    text-align: left;
+    z-index: 5;
+}
+
+/* Posisi panel di sebelah kiri untuk continent di kanan planet */
+.calculator .content-panel, 
+.results-mars .content-panel, 
+.cutting-calc .content-panel,
+.food-options .content-panel { 
+    right: auto;
+    left: -300px; 
+}
+
+/* Posisi panel di sebelah kanan untuk continent di kiri planet */
+.home .content-panel,
+.maintenance-tdee .content-panel,
+.results-jupiter .content-panel,
+.results-pluto .content-panel,
+.pluto-data .content-panel {
+    right: -300px;
+    left: auto;
+}
+
+/* Tampilkan panel saat hover */
+.continent:hover .content-panel {
+    opacity: 1;
+    pointer-events: auto;
+}
+.continent:hover .content-panel[style*="left: -300px"] {
+    left: -290px !important;
+    right: auto;
+}
+.continent:hover .content-panel[style*="right: -300px"] {
+    right: -290px !important;
+    left: auto;
+}
+
+/* SISA STYLING (SAMA) */
+.content-panel h3 {
+    margin-top: 0;
+    color: var(--color-text-dark);
+    font-size: 1.2em;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: var(--color-accent-red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--color-accent-red-dark);
+}
+
+.hint {
+    font-size: 0.75em;
+    color: var(--color-text-light);
+    margin-top: 10px;
+}
+
+.pluto-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+
+.pluto-table th, .pluto-table td {
+    border: 1px solid #eee;
+    padding: 6px;
+    text-align: left;
+}
+
+.pluto-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: var(--color-text-dark);
+}
+
+.pluto-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Stars */
+.stars {
+    position: fixed; /* DIGANTI dari absolute menjadi FIXED */
+    top: 0; /* DITAMBAHKAN */
+    left: 0; /* DITAMBAHKAN */
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* DITAMBAHKAN agar di belakang konten */
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+.footer-credit {
+    position: fixed; /* Gunakan fixed agar tetap di tempat saat di-scroll */
+    top: 20px;       /* Pindah ke atas */
+    right: 20px;     /* Pindah ke kanan */
+    bottom: auto;    /* Hapus bottom */
+    color: rgba(255, 255, 255, 0.6); 
+    font-size: 0.9em; 
+    z-index: 100; /* Tingkatkan z-index agar pasti terlihat di atas */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1000px) {
+    .planet {
+        gap: 20px; /* Kurangi jarak untuk layar lebih kecil */
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --planet-size: 300px; 
+    }
+    
+    .planet {
+        height: auto; 
+        min-height: 100vh;
+        margin-bottom: 50px; 
+        flex-direction: column; /* Ubah menjadi kolom di mobile */
+        gap: 30px;
+    }
+
+    .planet-info {
+        width: 100%;
+        text-align: center;
+        order: -1; /* Pindah ke paling atas */
+    }
+    
+    .planet-nav {
+        flex-direction: row; /* Navigasi menjadi horizontal di bawah planet */
+        width: 100%;
+        max-width: var(--planet-size);
+        justify-content: space-between;
+        margin-top: 20px;
+        order: 1; /* Pindah ke bawah planet */
+    }
+
+    .nav-info {
+        display: none; /* Sembunyikan penjelasan di antara panah */
+    }
+
+    .nav-arrow {
+        font-size: 2em;
+    }
+
+    .planet-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+    
+.header-text {
+        text-align: center;
+        position: relative; /* TIDAK FIXED */
+        top: 0;
+        /* HAPUS: left: 50%; dan transform: translateX(-50%); */
+        left: unset;
+        transform: none;
+        z-index: 10; 
+        max-width: 900px; 
+        padding: 10px 20px;
+        margin-bottom: 50px;
+}
+
+.title {
+    color: white;
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 0 0 5px 0; 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    /* margin sudah 0 auto untuk div yang memiliki lebar tetap, 
+       tapi karena width 100%, cukup diatur di parent .header-text */
+}
+
+.instruction {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+    margin: 0;
+}
+
+    .planet-sphere {
+        animation: none; /* Hentikan rotasi planet/daratan di mobile */
+    }
+
+    .continent {
+        animation: none; 
+    }
+    
+    .continent:hover {
+        transform: scale(1);
+    }
+    
+    .continent:hover::before {
+        box-shadow: none;
+    }
+
+    .content-panel {
+        right: auto !important; 
+        left: auto !important; 
+    }
+
+    /* Mobile: Tampilkan panel di bawah daratan yang di-tap */
+    .continent.active .content-panel {
+        opacity: 1;
+        pointer-events: auto;
+        position: absolute;
+        top: calc(100% + 15px);
+        left: 50% !important; 
+        right: auto;
+        transform: translateX(-50%);
+        width: 90vw; 
+        max-width: 350px;
+        z-index: 100;
+    }
+}

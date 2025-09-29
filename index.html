@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Planet - Kalkulator Antar Galaksi</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        
+        <div class="header-text">
+            <h1 class="title">Calorie Planet System</h1>
+            <p class="instruction">Gunakan tombol ▲ atau ▼ di sisi kanan untuk navigasi lebih cepat
+                <br> Hover atau Tap Daratan untuk Fitur</p>
+        </div>
+
+        <div class="planet" id="earth-planet">
+            
+            <div class="planet-info">
+                <h2 class="info-title">EARTH </h2>
+                <h3 class="info-subtitle">Planet's Calorie</h3>
+                <p class="info-explanation">Pusat Input Berat Badan & Kalkulator Kalori Terbakar (MET)</p>
+            </div>
+            
+            <div class="planet-sphere earth">
+                <div class="continent home">
+                    <div class="content-panel">
+                        <h3>⚖️ Input Berat Badan</h3>
+                        <div class="form-group">
+                            <label for="weight">Berat Badan (kg):</label>
+                            <input type="number" id="weight" placeholder="Contoh: 70" required min="1">
+                        </div>
+                        <p class="hint">Masukkan BB Anda. **WAJIB** diisi untuk semua Planet.</p>
+                    </div>
+                </div>
+
+                <div class="continent calculator">
+                    <div class="content-panel">
+                        <h3>🏃‍♂️ Hitung Kalori Terbakar</h3>
+                        <div class="form-group">
+                            <label for="sport">Jenis Olahraga (MET):</label>
+                            <select id="sport" required>
+                                <option value="">Pilih Olahraga</option>
+                                <option value="9.8">Lari (8 km/jam, Cepat)</option>
+                                <option value="6.0">Bersepeda (Santai)</option>
+                                <option value="4.0">Jalan Kaki (Cepat)</option>
+                                <option value="8.0">Berenang (Gaya Bebas)</option>
+                                <option value="3.5">Angkat Beban (Umum)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Durasi Olahraga (menit):</label>
+                            <input type="number" id="duration" placeholder="Contoh: 30" required min="1">
+                        </div>
+                        <button type="button" class="btn" onclick="calculateCaloriesBurned()">Hitung 🔥</button>
+                    </div>
+                </div>
+
+                <div class="continent results-earth">
+                    <div class="content-panel">
+                        <h3>📊 Hasil Kalori Terbakar</h3>
+                        <div id="resultContainerEarth">
+                            <p>Gunakan kalkulator untuk melihat hasil!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="planet-nav">
+                <div class="nav-info">
+                    <p class="nav-up-text">---</p>
+                    <p class="nav-planet-text">🔴 EARTH</p>
+                    <p class="nav-desc-text">Jumlah Kalori Terbakar</p>
+                </div>
+                <a href="#mars-planet" class="nav-arrow down-arrow">▼</a>
+            </div>
+        </div>
+
+        <div class="planet" id="mars-planet">
+            
+            <div class="planet-info">
+                <h2 class="info-title">MARS</h2>
+                <h3 class="info-subtitle">Planet's Calorie</h3>
+                <p class="info-explanation">Mesin penghitung kebutuhan BMR dan Maintenance Kalori (TDEE)</p>
+            </div>
+            
+            <div class="planet-sphere mars">
+                
+                <div class="continent maintenance-tdee">
+                    <div class="content-panel">
+                        <h3>⚡ Hitung BMR & Maintenance</h3>
+                        <div class="form-group">
+                            <label for="gender">Jenis Kelamin:</label>
+                            <select id="gender" required>
+                                <option value="">Pilih</option>
+                                <option value="male">Pria</option>
+                                <option value="female">Wanita</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Tinggi Badan (cm):</label>
+                            <input type="number" id="height" placeholder="Contoh: 170" required min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Usia (tahun):</label>
+                            <input type="number" id="age" placeholder="Contoh: 30" required min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="activity">Tingkat Aktivitas:</label>
+                            <select id="activity" required>
+                                <option value="">Pilih Level</option>
+                                <option value="sedentary">Sangat Rendah (Jarang Olahraga)</option>
+                                <option value="light">Ringan (1-3 hari/minggu)</option>
+                                <option value="moderate">Sedang (3-5 hari/minggu)</option>
+                                <option value="very">Tinggi (6-7 hari/minggu)</option>
+                                <option value="extra">Sangat Tinggi (2x sehari)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn" onclick="calculateMaintenanceTDEE()">Hitung Maintenance ⚙️</button>
+                    </div>
+                </div>
+                
+                <div class="continent results-mars">
+                    <div class="content-panel">
+                        <h3>📊 Hasil BMR & TDEE</h3>
+                        <div id="resultContainerMars">
+                            <p>Maintenance Kalori Anda: <strong id="maintenanceDisplayMars">0 Kkal</strong></p>
+                            <p class="hint">Gunakan hasil ini untuk perhitungan di Jupiter & Pluto.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="planet-nav">
+                <a href="#earth-planet" class="nav-arrow up-arrow">▲</a>
+                <div class="nav-info">
+                    <p class="nav-up-text">Scroll Up Planet</p>
+                    <p class="nav-planet-text">🔴MARS</p>
+                    <p class="nav-desc-text">BMR & Maintenance</p>
+                </div>
+                <a href="#jupiter-planet" class="nav-arrow down-arrow">▼</a>
+            </div>
+        </div>
+
+        <div class="planet" id="jupiter-planet">
+            
+            <div class="planet-info">
+                <h2 class="info-title">JUPITER</h2>
+                <h3 class="info-subtitle">Planet's Calorie</h3>
+                <p class="info-explanation">Penghitung Kalori untuk Lean Bulking</p>
+            </div>
+            
+            <div class="planet-sphere jupiter">
+                
+                <div class="continent lean-bulk-calc">
+                    <div class="content-panel">
+                        <h3>📈 Hitung Lean Bulk</h3>
+                        <p class="hint">Maintenance Anda: <strong id="maintenanceDisplayJupiter">0 Kkal</strong></p>
+                        
+                        <button type="button" class="btn" onclick="calculateLeanBulk()">Hitung Target Bulk 💪</button>
+                    </div>
+                </div>
+
+                <div class="continent results-jupiter">
+                    <div class="content-panel">
+                        <h3>📊 Hasil Target Lean Bulk</h3>
+                        <div id="resultContainerJupiter">
+                            <p>Hitung Lean Bulk untuk melihat target kalori Anda.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="planet-nav">
+                <a href="#mars-planet" class="nav-arrow up-arrow">▲</a>
+                <div class="nav-info">
+                    <p class="nav-up-text">Scroll Up Planet</p>
+                    <p class="nav-planet-text">🪐JUPITER</p>
+                    <p class="nav-desc-text">Lean Bulk</p>
+                </div>
+                <a href="#pluto-planet" class="nav-arrow down-arrow">▼</a>
+            </div>
+        </div>
+
+        <div class="planet" id="pluto-planet">
+            
+            <div class="planet-info">
+                <h2 class="info-title">PLUTO</h2>
+                <h3 class="info-subtitle">Planet's Calorie</h3>
+                <p class="info-explanation">Penghitung Kalori untuk Cutting (Defisit Kalori Berdasarkan Target Kg)</p>
+            </div>
+            
+            <div class="planet-sphere pluto">
+                
+                <div class="continent cutting-calc">
+                    <div class="content-panel">
+                        <h3>🔪 Hitung Target Cutting</h3>
+                        <p class="hint">Maintenance Anda: <strong id="maintenanceDisplayPluto">0 Kkal</strong></p>
+                        <div class="form-group">
+                            <label for="cut_target">Target Turun Berat (kg/bulan):</label>
+                            <select id="cut_target" required>
+                                <option value="1">1 kg</option>
+                                <option value="2">2 kg</option>
+                                <option value="3">3 kg</option>
+                                <option value="4">4 kg</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn" onclick="calculateCutting()">Hitung Target Cut ✂️</button>
+                    </div>
+                </div>
+
+                <div class="continent results-pluto">
+                    <div class="content-panel">
+                        <h3>📊 Hasil Target Cutting</h3>
+                        <div id="resultContainerPluto">
+                            <p>Hitung Cutting untuk melihat target kalori Anda.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="planet-nav">
+                <a href="#jupiter-planet" class="nav-arrow up-arrow">▲</a>
+                <div class="nav-info">
+                    <p class="nav-up-text">Scroll Up Planet</p>
+                    <p class="nav-planet-text">🌌PLUTO</p>
+                    <p class="nav-desc-text">Cutting Target</p>
+                </div>
+                <a href="#neptune-planet" class="nav-arrow down-arrow">▼</a>
+            </div>
+        </div>
+
+        <div class="planet" id="neptune-planet">
+            
+            <div class="planet-info">
+                <h2 class="info-title">NEPTUNE</h2>
+                <h3 class="info-subtitle">Planet's Calorie</h3>
+                <p class="info-explanation">Penghitung Kalori dan Protein sebuah makanan (Info Makro)</p>
+            </div>
+            
+            <div class="planet-sphere neptune">
+                
+                <div class="continent pluto-data">
+                    <div class="content-panel">
+                        <h3>🥩 Info Kalori & Protein</h3>
+                        <div id="plutoTableContainer">
+                            <p>Loading Data Makanan...</p>
+                        </div>
+                        <p class="hint">Data Kalori & Protein per 100g (kecuali Telur)</p>
+                    </div>
+                </div>
+
+                <div class="continent food-options">
+                    <div class="content-panel">
+                        <h3>🍚 Pilihan Makanan</h3>
+                        <p>Menu yang tersedia di sistem Pluto:</p>
+                        <ul>
+                            <li>Dada Ayam, Paha Ayam, Daging Sapi</li>
+                            <li>Telur</li>
+                            <li>Nasi, Ubi, Singkong</li>
+                            <li>Kacang Kedelai</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="planet-nav">
+                <a href="#pluto-planet" class="nav-arrow up-arrow">▲</a>
+                <div class="nav-info">
+                    <p class="nav-up-text">Scroll Up Planet</p>
+                    <p class="nav-planet-text">🌊NEPTUNE</p>
+                    <p class="nav-desc-text">Food Data</p>
+                </div>
+                <p class="nav-arrow down-arrow">---</p>
+            </div>
+        </div>
+
+        <div class="footer-credit">
+            Made By Sergie Gui Fukarel
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
