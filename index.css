@@ -143,6 +143,7 @@ body {
     box-shadow: 
         0 0 50px rgba(255, 255, 255, 0.1),
         inset -20px -20px 50px rgba(0, 0, 0, 0.3);
+        overflow:hidden;
     /* Rotasi DIPERLAMBAT 4X */
     animation: rotate 80s linear infinite; 
     cursor: pointer;
@@ -574,12 +575,14 @@ body {
         position: relative; /* Gunakan relative agar mengalir di akhir konten */
         top: auto;
         right: auto;
-        bottom: 20px; /* Beri sedikit jarak dari bawah */
+        /* Tambahkan left: 0 dan width: 100% agar centering bekerja */
         left: 0;
         width: 100%;
         text-align: center; /* Posisikan teks di tengah */
         margin-top: 50px;
         padding-bottom: 50px; /* Jarak agar tidak terpotong */
         z-index: 5;
+        /* KRUSIAL: Ubah dari bottom: 20px menjadi margin-bottom */
+        margin-bottom: 20px; 
     }
 }
