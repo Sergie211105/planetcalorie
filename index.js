@@ -61,12 +61,17 @@ function initMobileInteraction() {
                     }
                 });
                 
-                this.classList.toggle('active');
-
+                // Toggle kelas 'active'
+                const wasActive = this.classList.contains('active');
+                
                 // Cegah toggle panel jika tombol hitung diklik
                 if (event.target.classList.contains('btn')) {
+                    // Jika tombol diklik, pastikan panel tetap terbuka
                     event.stopPropagation();
                     this.classList.add('active'); 
+                } else {
+                    // Jika bukan tombol, lakukan toggle
+                    this.classList.toggle('active');
                 }
             }
         });

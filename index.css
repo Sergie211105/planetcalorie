@@ -449,6 +449,8 @@ body {
     }
 }
 
+/* --- Tambahkan atau modifikasi di bagian Media Queries (index.css) --- */
+
 @media (max-width: 768px) {
     :root {
         --planet-size: 300px; 
@@ -458,75 +460,68 @@ body {
         height: auto; 
         min-height: 100vh;
         margin-bottom: 50px; 
-        flex-direction: column; /* Ubah menjadi kolom di mobile */
+        flex-direction: column; 
         gap: 30px;
+        /* Tambahkan padding agar konten tidak terlalu menempel di sisi */
+        padding: 0 10px; /* Sedikit padding di kiri/kanan */
     }
 
     .planet-info {
         width: 100%;
         text-align: center;
-        order: -1; /* Pindah ke paling atas */
+        order: -1; 
+        /* Pastikan elemen ini lebih rapi di tengah */
+        padding: 0 20px;
     }
     
+    /* Perbaikan pada Title/Header di Mobile */
+    .header-text {
+        text-align: center;
+        position: relative; 
+        top: 0;
+        left: unset;
+        transform: none;
+        z-index: 10; 
+        max-width: 900px; 
+        padding: 10px 20px;
+        margin-bottom: 30px; /* Kurangi jarak bawah */
+    }
+
+    .title {
+        font-size: 1.8em; /* Kurangi ukuran font agar tidak terlalu besar */
+    }
+
     .planet-nav {
-        flex-direction: row; /* Navigasi menjadi horizontal di bawah planet */
+        flex-direction: row; 
         width: 100%;
         max-width: var(--planet-size);
         justify-content: space-between;
         margin-top: 20px;
-        order: 1; /* Pindah ke bawah planet */
+        order: 1; 
+        /* CENTERKAN NAVIGASI AGAR DI BAWAH PLANET */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .nav-info {
-        display: none; /* Sembunyikan penjelasan di antara panah */
+        display: none; 
     }
 
     .nav-arrow {
         font-size: 2em;
     }
 
-    .planet-title {
-        font-size: 1.8em;
-        margin-bottom: 30px;
-    }
-    
-.header-text {
-        text-align: center;
-        position: relative; /* TIDAK FIXED */
-        top: 0;
-        /* HAPUS: left: 50%; dan transform: translateX(-50%); */
-        left: unset;
-        transform: none;
-        z-index: 10; 
-        max-width: 900px; 
-        padding: 10px 20px;
-        margin-bottom: 50px;
-}
-
-.title {
-    color: white;
-    font-size: 2.2em;
-    font-weight: bold;
-    margin: 0 0 5px 0; 
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    /* margin sudah 0 auto untuk div yang memiliki lebar tetap, 
-       tapi karena width 100%, cukup diatur di parent .header-text */
-}
-
-.instruction {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9em;
-    margin: 0;
-}
-
     .planet-sphere {
-        animation: none; /* Hentikan rotasi planet/daratan di mobile */
+        animation: none; 
     }
 
     .continent {
         animation: none; 
+        /* Pastikan continent tidak berinteraksi aneh saat disentuh */
+        touch-action: manipulation;
     }
     
+    /* Hapus efek hover di mobile agar hanya merespons tap */
     .continent:hover {
         transform: scale(1);
     }
@@ -535,22 +530,56 @@ body {
         box-shadow: none;
     }
 
+    /* ************************************************************* */
+    /* *** Aturan KRUSIAL untuk Content Panel di Mobile/Tap (ACTIVE) *** */
+    /* ************************************************************* */
+
+    /* Panel dalam keadaan DEFAULT (saat tidak aktif) harus disembunyikan total */
     .content-panel {
         right: auto !important; 
         left: auto !important; 
+        opacity: 0;
+        /* Ubah pointer-events menjadi none saat default, agar tidak menutupi tap lain */
+        pointer-events: none; 
+        /* Atur transisi agar perpindahan posisi lebih mulus */
+        transition: opacity 0.3s ease, top 0.3s ease;
     }
 
     /* Mobile: Tampilkan panel di bawah daratan yang di-tap */
     .continent.active .content-panel {
         opacity: 1;
-        pointer-events: auto;
+        pointer-events: auto; /* Aktifkan kembali saat 'active' */
         position: absolute;
-        top: calc(100% + 15px);
+        top: calc(100% + 15px); /* Tepat di bawah daratan */
         left: 50% !important; 
         right: auto;
         transform: translateX(-50%);
         width: 90vw; 
         max-width: 350px;
         z-index: 100;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Beri bayangan agar menonjol */
+    }
+    
+    /* PERBAIKAN: Atur Z-Index Planet Agar Content Panel berada di atasnya */
+    .planet-sphere {
+        z-index: 10; /* Pastikan planet di atas bintang */
+    }
+    
+    .continent {
+        z-index: 15; /* Pastikan daratan di atas planet */
+    }
+    
+    /* Footer Credit ke Posisi Bawah di Mobile */
+    .footer-credit {
+        position: relative; /* Gunakan relative agar mengalir di akhir konten */
+        top: auto;
+        right: auto;
+        bottom: 20px; /* Beri sedikit jarak dari bawah */
+        left: 0;
+        width: 100%;
+        text-align: center; /* Posisikan teks di tengah */
+        margin-top: 50px;
+        padding-bottom: 50px; /* Jarak agar tidak terpotong */
+        z-index: 5;
     }
 }
